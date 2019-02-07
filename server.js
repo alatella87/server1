@@ -4,16 +4,15 @@ const bodyParser = require('body-parser')
 const MongoClient = require('mongodb').MongoClient
 
 let db;
-let blabla;
 
 const URL = 'mongodb://alatella:Aaa987987987***@ds119445.mlab.com:19445/star-wars-quotes';
 const dbName = 'star-wars-quotes';
 
 MongoClient.connect(URL, { useNewUrlParser: true }, (err, database) => {
     if (err) return console.log(err);
-    app.listen(3000, () => {
+    app.listen(8080, () => {
         db = database.db(dbName);
-        console.log('listening on port 3000')
+        console.log('listening on port 8080')
     })
 });
 
@@ -23,7 +22,7 @@ app.use(bodyParser.json());
 app.use(express.static('public'));
 
 
-// GET Request (path variable and callback)
+// GET Request (ph variable and callback)
 app.get('/', (req, res) => {
     db.collection('quotes').find().toArray((err, result) => {
         if (err) return console.log(err)
